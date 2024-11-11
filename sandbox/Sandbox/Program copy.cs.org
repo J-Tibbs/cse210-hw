@@ -1,0 +1,70 @@
+
+
+
+
+
+using System;
+using System.Runtime.CompilerServices;
+
+class Program
+{
+
+    // static int AddNumbers(int n1, int n2){
+    //     int total = n1 + n2;
+    //     return total;
+    // }
+
+    static int number_to_100(int number){
+        int newNum = number;
+        while(newNum != 100){
+            int i = 1;
+            if(newNum == 104){
+                newNum -= 4;
+            }
+            if(newNum < 100 && i == 1){
+                newNum += 8;
+                Console.WriteLine(newNum);
+                i++;
+            }
+            else if (newNum > 100 && i == 1){
+                newNum -= 13;
+                Console.WriteLine(newNum);
+                i++;
+            }
+            if (newNum < 100 && i==2){
+                newNum *= 2;
+                Console.WriteLine(newNum);
+                i++;
+            }
+            else if (newNum > 100 && i == 2){
+                newNum -= 3;
+                Console.WriteLine(newNum);
+                i++;
+            }
+            if (newNum < 100 && i==3){
+                newNum += 4;
+                Console.WriteLine(newNum);
+            }
+            else if (newNum > 100 && i == 3){
+                newNum /= 2;
+                Console.WriteLine(newNum);
+            }
+            
+        }
+        
+
+        return newNum;
+    } 
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Give me a number pls: ");
+        int num = int.Parse(Console.ReadLine());
+        int hundred = number_to_100(num);
+        Console.WriteLine($"Your number is {hundred} :D");
+
+
+
+        // int total = AddNumbers(1, 20);
+        // Console.WriteLine($"{total}");
+    }
+}
