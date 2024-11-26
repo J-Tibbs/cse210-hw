@@ -34,11 +34,20 @@ class Program
     }
     static void Main(string[] args)
     {
-    int x = 10;
-
-    Circle myCircle = new Circle(x);
+    while(true){
+        spinner();
+    }
 
     
+    }
+
+    public static void spinner(){
+        Console.Write("-");
+        Thread.Sleep(500);
+        Console.Write("\b \b");
+        Console.Write("+");
+        Thread.Sleep(500);
+        Console.Write("\b \b");
     }
 
 
