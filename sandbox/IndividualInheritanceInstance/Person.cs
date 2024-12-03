@@ -1,4 +1,4 @@
-class Person{
+abstract class Person{
     private string _firstName;
     private string _lastName;
     private int _age;
@@ -9,9 +9,15 @@ class Person{
         _age = age;
     }
 
-    public virtual string GetPersonInfo(){
-        return $"{_firstName}, {_lastName}, {_age}";
+    public String GetPersonStats(){
+        return $"{_firstName} {_lastName}, {_age}";
     }
+
+
+    public abstract string GetPersonInfo();
+    // {
+        // return $"{_firstName}, {_lastName}, {_age}";
+    // }
     public void SetFirstName(string firstName){
         _firstName = firstName;
     }
