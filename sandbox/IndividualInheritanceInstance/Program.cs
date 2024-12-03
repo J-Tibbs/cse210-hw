@@ -1,4 +1,9 @@
-﻿class Program{
+﻿using System.Security.Cryptography.X509Certificates;
+
+class Program{
+        public static void SetPersonFirstName(Person person, string FirstName){
+            person.SetFirstName(FirstName);
+        }
     public static void Main(string[] args){
 
 //Note how you can not say person a 2nd time, i dont like it
@@ -12,7 +17,28 @@
         Console.WriteLine(betterBobCauseThereIsASecondPerson.GetPersonInfo());
         Console.WriteLine(bestBob.GetDoctorInformaion());
         Console.WriteLine(bestBob.GetPersonInfo());
+
+
         Console.WriteLine(doug.GetPoliceInformaion());
+        
+        SetPersonFirstName(doug, "Doug da copper");
+        Console.WriteLine(doug.GetPoliceInformaion());
+        Console.WriteLine(doug.GetPersonInfo());
+
+        SetPersonFirstName(bob, "Bob da billy bob");
+        Console.WriteLine(bob.GetPersonInfo());
+        
+        Console.WriteLine("\n\n");
+
+        List<Person> people = new List<Person>();
+        people.Add(bob);
+        people.Add(betterBobCauseThereIsASecondPerson);
+        people.Add(bestBob);
+        people.Add(doug);
+
+        foreach(Person person in people){
+            Console.WriteLine(person.GetPersonInfo());
+        }
     }
 
 
