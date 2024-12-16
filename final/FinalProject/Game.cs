@@ -6,7 +6,6 @@ class Game
 {
     private int pointAmount;
     private int coinAmount;
-    private int q1Index = 0, q2Index = 1, q3Index = 2, q4Index = 3;
     private int[] q1 = [0, 1, 5, 6];
     private int[] q2 = [3, 4, 8, 9];
     private int[] q3 = [15, 16, 20, 21];
