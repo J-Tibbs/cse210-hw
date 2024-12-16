@@ -27,5 +27,5 @@ public string GetName(){
 public void SetName(string name){
     _name = name;
 }
-
+public abstract string GetSprite();
 }

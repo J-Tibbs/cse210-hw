@@ -2,9 +2,12 @@ class Menu
 {
     int userChoice;
     int totalPoints;
+    int totalCoins;
     List<Goal> goals = new List<Goal>();
+    Game game = new Game();
 
     public void DisplayAll(){
+        game.FirstTimeLoad();
         do{
         Console.WriteLine($"\nYour total points: {totalPoints}\n");
         Console.WriteLine("Please select an option by number:");
@@ -18,10 +21,36 @@ class Menu
         userChoice = int.Parse(Console.ReadLine());
         switch(userChoice){
             case 1:
+            Console.WriteLine("Select a goal to record:");
+                    for (int i = 0; i < goals.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {goals[i].DisplayProgress()}");
+                    }
+                    int selectedGoal = int.Parse(Console.ReadLine()) - 1;
+                
+                    if (selectedGoal >= 0 && selectedGoal < goals.Count)
+                    {
+                        int pointsEarned = goals[selectedGoal].CompleteItem();
+                        Console.WriteLine($"Congrats! You earned {pointsEarned} points!");
+                        totalPoints += pointsEarned;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid selection.");
+                    }
+                    // if (selectedGoal >= 0 && selectedGoal < goals.Count)
+                    //     {
+                    //         int pointsEarned = goals[selectedGoal].CompleteItem();
+                    //         totalPoints += pointsEarned;
+                    //         Console.WriteLine($"Congrats! You earned {pointsEarned} points!");
+                    //     }
                 break;
             case 2:
-                Game game = new Game(totalPoints, 0);
+                game.SetCoins(totalCoins);
+                game.SetPoints(totalPoints);
                 game.DisplayAll();
+                totalPoints = game.returnPoints();
+                totalCoins = game.returnCoins();
                 break;
             case 3:
             foreach (var goal in goals)
@@ -30,7 +59,7 @@ class Menu
                 }
                 break;
             case 4:
-                Console.WriteLine("Select Goal Type: 1) Simple 2) Eternal 3) Checklist");
+                Console.WriteLine("Select Goal Type: 1) One Time 2) Repeated 3) Checklist");
                     int goalType = int.Parse(Console.ReadLine());
                     Console.Write("Enter goal name: ");
                     string name = Console.ReadLine();
@@ -60,14 +89,15 @@ class Menu
             case 5:
                 Console.WriteLine("What file would you like to save to");
                 string fileName = Console.ReadLine();
-                SaveAndLoad save = new SaveAndLoad(fileName, goals);
+                SaveAndLoad save = new SaveAndLoad(fileName, goals, game, totalPoints);
                 save.SaveFile();
                 break;
             case 6:
                 Console.WriteLine("What file would you like to load from?");
                 fileName = Console.ReadLine();
-                SaveAndLoad load = new SaveAndLoad(fileName, goals);
-                load.LoadFile();
+                SaveAndLoad load = new SaveAndLoad(fileName, goals, game, totalPoints);
+                totalPoints = load.LoadFile();
+                
                 break;
         }
         }while(userChoice != 7);
