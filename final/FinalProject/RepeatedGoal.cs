@@ -4,11 +4,13 @@ class RepeatedGoal : Goal
 
 
 
-    public override string DisplayProgress(){
-        return "Repeated";
+    public override int CompleteItem()
+    {
+        return GetPoints();
     }
 
-    public override int CompleteItem(){
-        return 1;
+    public override string DisplayProgress()
+    {
+        return $"[ ] {GetName()}: {GetDesc()} (Eternal)";
     }
 }
